@@ -1,26 +1,51 @@
-import './habit.css'
-import healthImg from '../../../assets/images/healthcare.png'
-import gameImg from '../../../assets/images/joystick.png'
-import waterImg from '../../../assets/images/drop.png'
+import "./habit.css";
+import healthImg from "../../../assets/images/healthcare.png";
+import gameImg from "../../../assets/images/joystick.png";
+import waterImg from "../../../assets/images/drop.png";
+import React, { useState } from "react";
+import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
+import { Progress } from "antd";
 
 const Habit = () => {
+  // Antd Progress
+  const [percent, setPercent] = useState(0);
+  const increase = () => {
+    setPercent((prevPercent) => {
+      const newPercent = prevPercent + 10;
+      if (newPercent > 100) {
+        return 100;
+      }
+      return newPercent;
+    });
+  };
+  const decline = () => {
+    setPercent((prevPercent) => {
+      const newPercent = prevPercent - 10;
+      if (newPercent < 0) {
+        return 0;
+      }
+      return newPercent;
+    });
+  };
   return (
     <div className="habit-container">
       <div className="habit-upperBody">
         <div className="header">
-            {/* Image According to habit */}
-            <div className="habit-image">
-
+          {/* Image According to habit */}
+          <div className="habit-image">
             <img src={waterImg} alt="" />
-            </div>
-            <h4 className="habit-name">Water</h4>
+          </div>
+          <h4 className="habit-name">Water</h4>
         </div>
 
-        <div className="graph"></div>
+        <div className="graph">
+          <Progress type="circle" percent={percent} />
+        </div>
       </div>
 
       <div className="habit-btns">
-
+        <button className="dec-count" onClick={decline}><MinusOutlined /></button>
+        <button className="inc-count" onClick={increase}><PlusOutlined /></button>
       </div>
     </div>
   );
