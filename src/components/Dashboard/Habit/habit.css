@@ -1,0 +1,45 @@
+.habit-container{
+    padding: 20px;
+    width: 220px;
+    background-color: black;
+    border-radius: 20px;
+}
+.habit-upperBody{
+    padding: 20px;
+    border-radius: 20px;
+    background-color: rgb(37, 37, 37);
+}
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.habit-image{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: rgb(56, 56, 56);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.habit-image img{
+    height: 60%;
+    width: 60%;
+    object-fit: cover;
+    object-position: center;
+}
+.graph{
+    margin-top: 10px;
+    height: 150px;
+    background-color: rgb(25, 25, 25);
+}
+.habit-btns{
+    height: 50px;
+    width: 100%;
+    background-color: rgb(37, 37, 37);
+    border-radius: 50px;
+    margin-top: 20px;
+}
