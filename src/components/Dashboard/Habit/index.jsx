@@ -4,7 +4,8 @@ import gameImg from "../../../assets/images/joystick.png";
 import waterImg from "../../../assets/images/drop.png";
 import React, { useState } from "react";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
-import { Progress } from "antd";
+import { Progress, Select } from "antd";
+
 
 const Habit = () => {
   // Antd Progress
@@ -27,6 +28,11 @@ const Habit = () => {
       return newPercent;
     });
   };
+
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  };  
+  
   return (
     <div className="habit-container">
       <div className="habit-upperBody">
@@ -46,6 +52,18 @@ const Habit = () => {
       <div className="habit-btns">
         <button className="dec-count" onClick={decline}><MinusOutlined /></button>
         <button className="inc-count" onClick={increase}><PlusOutlined /></button>
+      </div>
+
+      <div className="select-completition">
+      <Select className="antd-select-tag"
+      defaultValue="Select"
+      onChange={handleChange}
+      options={[
+        { value: 'Done', label: 'Done' },
+        { value: 'Not Done', label: 'Not Done' },
+        { value: 'None', label: 'None' },
+      ]}
+    />
       </div>
     </div>
   );
