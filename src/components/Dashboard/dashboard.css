@@ -58,3 +58,21 @@
     background-color: yellowgreen;
     color: black;
 }
+
+.add-habits-btn{
+    position: fixed;
+    background-color: yellowgreen;
+    font-size: 18px;
+    padding: 12px 20px;
+    border-radius: 50px;
+    bottom: 40px;
+    right: 40px;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 1;
+}
+
+.add-habits-btn:hover{
+    box-shadow: 0 0 50px 0px rgb(170, 255, 0);
+}
+

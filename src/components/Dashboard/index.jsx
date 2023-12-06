@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import "./dashboard.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SideNavbar from "../SideNavbar";
 import Habit from "./Habit";
+import CreateHabit from "./CreateHabit";
+import { createBox } from "../../actions";
 
 export default function Dashboard() {
   let navigate = useNavigate();
+  let dispatch = useDispatch()
+  // Fetchin user from Store
   let user = useSelector((state) => state.setUserData);
 
+  let createBoxStatus = useSelector((state)=>state.handleCreateBox)
   const [settingsBox, setSettingsBox] = useState(false);
   const [statsBox, setStatsbox] = useState(false);
   useEffect(() => {
@@ -86,7 +91,10 @@ export default function Dashboard() {
 
   const datesList = getPreviousAndNextDates();
   console.log("30 days:", datesList);
-  let activeNav = statsBox ? "stats":settingsBox? "settings":"dashboard"
+  let activeNav = statsBox ? "stats":settingsBox? "settings":"dashboard";
+
+  // Create Habit
+// const [creatHabitBox, setCreateHabitBox] = useState(false)
   return (
     <div className="dashboard-container">
       {/* Side Bar */}
@@ -101,9 +109,9 @@ export default function Dashboard() {
 
         {/* Showing Dates */}
         <div className="dates-list">
-          {datesList.map((date) => {
+          {datesList.map((date, index) => {
 
-            return <div className={`date-list-item ${date.formatted === todayDate.formatted ? 'active-date' : ''}`}>
+            return <div key={index} className={`date-list-item ${date.formatted === todayDate.formatted ? 'active-date' : ''}`}  >
               
               <span className="dayOfWeek">{date.dayOfWeek}</span>
               <span className="day">{date.day}</span>
@@ -113,10 +121,19 @@ export default function Dashboard() {
         </div>
         <h2 className="todays-habits-heading">Today's Habits</h2>
         <div className="habit-list">
-          <Habit />
-          <Habit />
-          <Habit />
+          {user && user.habitData && user.habitData.map((habit, index)=><Habit habit= {habit} index={index} key={index} />)}
+
         </div>
+      </div>
+
+        {/* Create Box */}
+        {
+          createBoxStatus && <CreateHabit/>
+        }
+      <div className="add-habits-btn" onClick={()=>{
+        dispatch(createBox(true))
+      }}>
+        Add Habit +
       </div>
     </div>
   );

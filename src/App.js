@@ -3,7 +3,7 @@ import "./App.css";
 import Dashboard from "./components/Dashboard";
 import WelcomePage from "./components/WelcomePage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { activeUser } from "./actions";
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
         </Routes>
       </Router>
     </div>
-  );
+  )
 }
 
 export default App;

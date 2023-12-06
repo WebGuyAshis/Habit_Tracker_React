@@ -6,4 +6,12 @@ export const activeUser = (user)=>{
     }
 }
 
-// export handle
+// export Create Box 
+
+export const createBox = (val)=>{
+    console.log("from Action BOX:", val);
+    return{
+        type: "HANDLE_CREATE_BOX",
+        payload: val
+    }
+}
