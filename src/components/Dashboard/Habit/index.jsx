@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { Progress, Select } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { activeUser } from "../../../actions";
+import { activeUser, prevBox } from "../../../actions";
 
 const Habit = ({ habit, index }) => {
   let dispatch = useDispatch();
@@ -84,14 +84,16 @@ const Habit = ({ habit, index }) => {
       localStorage.setItem("user", JSON.stringify(user));
     }
   }, [completedCount]);
-
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
-  };
+  // states for previous record data
+  // const [preVRecordBox, setprevRecordBox] = useState(true)
+const showRecord = ()=>{
+  console.log("Show Record!");
+  dispatch(prevBox(true))
+}
 
   return (
     <div className="habit-container">
-      <div className="habit-upperBody">
+      <div className="habit-upperBody" onClick={showRecord}>
         <div className="header">
           {/* Image According to habit */}
           <div className="habit-image">
@@ -118,7 +120,6 @@ const Habit = ({ habit, index }) => {
         <Select
           className="antd-select-tag"
           defaultValue="Select"
-          onChange={handleChange}
           options={[
             { value: "Done", label: "Done" },
             { value: "Not Done", label: "Not Done" },

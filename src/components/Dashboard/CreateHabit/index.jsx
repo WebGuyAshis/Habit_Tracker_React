@@ -29,6 +29,7 @@ const CreateHabit = () => {
   //   Handling Form Submission
   const handleFormSubmission = (e) => {
     e.preventDefault();
+    dispatch(createBox(false))
     console.log("Form Submitted!", habitName, habitCount);
     console.log("User", user);
     // Setting created Havit top localStorage as well as to the store

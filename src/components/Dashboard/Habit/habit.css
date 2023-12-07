@@ -11,7 +11,14 @@
 .habit-upperBody{
     padding: 20px;
     border-radius: 20px;
-    background-color: rgb(37, 37, 37);
+    background-color: rgb(26, 26, 26);
+    transition: all 0.3s;
+    cursor: pointer;
+    border-bottom: 1px solid yellowgreen;
+}
+
+.habit-upperBody:hover{
+    background-color: rgb(15, 15, 15);
 }
 
 .header{

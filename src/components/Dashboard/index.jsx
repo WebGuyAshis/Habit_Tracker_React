@@ -6,13 +6,15 @@ import SideNavbar from "../SideNavbar";
 import Habit from "./Habit";
 import CreateHabit from "./CreateHabit";
 import { createBox } from "../../actions";
+import PrevRecord from "./Habit/Prevrecord";
 
 export default function Dashboard() {
   let navigate = useNavigate();
   let dispatch = useDispatch()
   // Fetchin user from Store
   let user = useSelector((state) => state.setUserData);
-
+  const showPrevRecord = useSelector((state)=>state.handlePrevBox);
+  console.log("Show Prev record:", showPrevRecord);
   let createBoxStatus = useSelector((state)=>state.handleCreateBox)
   const [settingsBox, setSettingsBox] = useState(false);
   const [statsBox, setStatsbox] = useState(false);
@@ -127,9 +129,8 @@ export default function Dashboard() {
       </div>
 
         {/* Create Box */}
-        {
-          createBoxStatus && <CreateHabit/>
-        }
+        {createBoxStatus && <CreateHabit/>}
+        { showPrevRecord && <PrevRecord/> }
       <div className="add-habits-btn" onClick={()=>{
         dispatch(createBox(true))
       }}>

@@ -11,4 +11,4 @@ const handleCreateBox = (state = initialState, action) =>{
 }
 
 export default handleCreateBox;
-
+ 
