@@ -5,7 +5,8 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { prevBox } from "../../../../../actions";
 
-const PrevData = () => {
+const PrevData = ({date,index, activeHabitData}) => {
+  console.log("Dates:", date, index);
     const dispatch = useDispatch();
   return (
     <div className="prevData-container">
@@ -18,7 +19,7 @@ const PrevData = () => {
         <FontAwesomeIcon icon={faXmark} />
       </span>
 
-      <h2>7th Dec, 2023</h2>
+      <h2>{date.formatted}</h2>
 
       <div className="selector-container">
         <label htmlFor="antd-select">Status:</label>

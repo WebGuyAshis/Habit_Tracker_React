@@ -24,3 +24,12 @@ export const prevBox = (val)=>{
         payload: val
     }
 }
+
+// active clicked habit
+
+export const activeHabitData = (val)=>{
+    return{
+        type: "SET_ACTIVE_HABIT_DATA",
+        payload: val
+    }
+}

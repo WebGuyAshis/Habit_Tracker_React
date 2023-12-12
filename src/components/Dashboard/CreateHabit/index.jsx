@@ -37,8 +37,15 @@ const CreateHabit = () => {
     if (user.habitData) {
       habitData = [...user.habitData];
     }
+    // Id of Each Habit
+    let id = Date.now();
     let countCompleted = 0;
-    habitData.push({ habitName, habitCount,habitIcon, countCompleted });
+    let prevRecord = [];
+    for (let i = 0; i < 7; i++) {
+      prevRecord.push({ countCompleted: 0, status: "None" });
+    }
+    
+    habitData.push({ id,habitName, habitCount,habitIcon, countCompleted,prevRecord });
     let updatedUser = { ...user };
     updatedUser.habitData = habitData;
 
