@@ -88,15 +88,15 @@ export default function Dashboard() {
     return datesList;
   }
 
-  const formattedDates = getPreviousAndNextDates();
-  console.log(formattedDates);
+  // const formattedDates = getPreviousAndNextDates();
+  // console.log(formattedDates);
 
   const datesList = getPreviousAndNextDates();
-  console.log("30 days:", datesList);
+  // console.log("30 days:", datesList);
   let activeNav = statsBox ? "stats":settingsBox? "settings":"dashboard";
 
   // Create Habit
-// const [creatHabitBox, setCreateHabitBox] = useState(false)
+
   return (
     <div className="dashboard-container">
       {/* Side Bar */}

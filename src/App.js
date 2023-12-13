@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import Dashboard from "./components/Dashboard";
 import WelcomePage from "./components/WelcomePage";
@@ -7,17 +7,24 @@ import { useEffect, useState } from "react";
 import { activeUser } from "./actions";
 
 function App() {
-  console.log("I will ALways Run");
   let dispatch = useDispatch();
   // Check User Data from Local Host
-  let user = JSON.parse(localStorage.getItem("user"));
+  let userData = JSON.parse(localStorage.getItem("user"));
 
   useState(() => {
-    if (user) {
-      dispatch(activeUser(user));
-      console.log(`Redirect ${user.name} to Dashboard!`);
+    if (userData) {
+      dispatch(activeUser(userData));
     }
   }, []);
+
+  const user = useSelector((state)=>state.setUserData) 
+// Whenever User Gets Updated then update it to Local storage As well
+  useEffect(()=>{
+    if(user){
+      localStorage.setItem('user', JSON.stringify(user))
+      console.log("Setting User to Local Storage!");
+    }
+  }, [user])
 
   return (
     <div className="App">

@@ -52,9 +52,8 @@ const PrevRecord = () => {
   for (let i = 6; i > 0; i--) {
     const previousDate = new Date(today);
     previousDate.setDate(today.getDate() - i);
-    previousDates.push(getFormattedDate(previousDate));
+    previousDates.unshift(getFormattedDate(previousDate));
   }
-  previousDates.reverse();
 
 
 
