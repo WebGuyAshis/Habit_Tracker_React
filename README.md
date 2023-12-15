@@ -1,3 +1,37 @@
+# React Habit Tracker
+
+A simple React Habit Tracker that allows users to add habits, set counts, delete habits, and track completion rates. The project uses React, Redux, and React Router.
+
+## Features
+
+- **Add Habits:** Users can add new habits to their tracker.
+
+- **Set Counts:** Users can set counts for each habit to track their progress.
+
+- **Delete Habits:** Users can delete habits they no longer want to track.
+
+- **Interactive Graph:** A visual representation of habit completion rates over time.
+
+- **Track Habits Daily:** Users can mark each habit as Done, Not done, or None for a day.
+
+- **Change Previous Days' Status:**
+   - Users can change the status of a habit for any previous day within the last 7 days.
+   - Navigate to the specific day by tapping on the habit and modify the habit status as needed.
+
+## Habit Statuses
+
+- **Done:** Mark the habit as done for a day.
+
+- **Not Done:** Mark the habit as not done for a day.
+
+- **None:** User did not take any action on a habit for a day.
+
+## Technologies Used
+
+- React
+- Redux
+- React Router
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
