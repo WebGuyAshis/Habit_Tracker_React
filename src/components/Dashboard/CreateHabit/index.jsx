@@ -21,10 +21,40 @@ const CreateHabit = () => {
   const [habitCount, setHabitCount] = useState(0);
   const [habitIcon, setHabitIcon] = useState(sleepIcon)
 
-  // // HandleIconSetup
-  // const handleIconSetup = ()=>{
-  //   setHabitIcon
-  // }
+  // Dates
+  function getFormattedDate(date) {
+    const dayOfWeek = date.toLocaleString("en-US", { weekday: "short" });
+    const day = date.getDate();
+    const month = date.toLocaleString("en-US", { month: "short" });
+    const year = date.getFullYear();
+    const ordinalIndicator = getOrdinalIndicator(day);
+
+    return {
+      dayOfWeek: dayOfWeek,
+      day: day,
+      month: month,
+      year: year,
+      formatted: `${dayOfWeek}, ${day}${ordinalIndicator} ${month}, ${year}`,
+    };
+  }
+
+  function getOrdinalIndicator(day) {
+    if (day >= 11 && day <= 13) {
+      return "th";
+    }
+    const lastDigit = day % 10;
+    switch (lastDigit) {
+      case 1:
+        return "st";
+      case 2:
+        return "nd";
+      case 3:
+        return "rd";
+      default:
+        return "th";
+    }
+  }
+  const today = new Date();
 
   //   Handling Form Submission
   const handleFormSubmission = (e) => {
@@ -42,10 +72,12 @@ const CreateHabit = () => {
     let countCompleted = 0;
     let prevRecord = [];
     for (let i = 0; i < 7; i++) {
-      prevRecord.push({ countCompleted: 0, status: "None" });
+      const previousDate = new Date(today);
+      previousDate.setDate(today.getDate() - i);
+      prevRecord.push({ countCompleted: 0, status: "None", date:getFormattedDate(previousDate).formatted });
     }
-    
-    habitData.push({ id,habitName, habitCount,habitIcon, countCompleted,prevRecord });
+
+    habitData.push({ id, habitName, habitCount, habitIcon, countCompleted, prevRecord });
     let updatedUser = { ...user };
     updatedUser.habitData = habitData;
 
@@ -55,9 +87,9 @@ const CreateHabit = () => {
   };
   return (
     <div className="create-box-habit-background">
-      
+
       <div className="create-habit-container">
-      <h1 className="container-heading">Create Habit</h1>
+        <h1 className="container-heading">Create Habit</h1>
 
         {/* Close Box Btn */}
         <span
@@ -104,27 +136,27 @@ const CreateHabit = () => {
 
             <label htmlFor="">Select Icon: </label>
             <div className="icons-selector">
-              <div className="icon" onClick={()=>{setHabitIcon(gameIcon)}}>
+              <div className="icon" onClick={() => { setHabitIcon(gameIcon) }}>
                 <img src={gameIcon} alt="" />
               </div>
 
-              <div className="icon" onClick={()=>{setHabitIcon(healthIcon)}}>
+              <div className="icon" onClick={() => { setHabitIcon(healthIcon) }}>
                 <img src={healthIcon} alt="" />
               </div>
 
-              <div className="icon" onClick={()=>{setHabitIcon(waterIcon)}}>
+              <div className="icon" onClick={() => { setHabitIcon(waterIcon) }}>
                 <img src={waterIcon} alt="" />
               </div>
 
-              <div className="icon" onClick={()=>{setHabitIcon(exerciseIcon)}}>
+              <div className="icon" onClick={() => { setHabitIcon(exerciseIcon) }}>
                 <img src={exerciseIcon} alt="" />
               </div>
 
-              <div className="icon" onClick={()=>{setHabitIcon(workingIcon)}}>
+              <div className="icon" onClick={() => { setHabitIcon(workingIcon) }}>
                 <img src={workingIcon} alt="" />
               </div>
 
-              <div className="icon" onClick={()=>{setHabitIcon(sleepIcon)}}>
+              <div className="icon" onClick={() => { setHabitIcon(sleepIcon) }}>
                 <img src={sleepIcon} alt="" />
               </div>
               {/* <img className="icon" src="" alt="" />

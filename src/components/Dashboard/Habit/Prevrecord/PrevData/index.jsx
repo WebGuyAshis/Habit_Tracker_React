@@ -2,12 +2,22 @@ import "./prevData.css";
 import { Select } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
-import { prevBox } from "../../../../../actions";
+import { useDispatch, useSelector } from "react-redux";
+import { activeUser, prevBox } from "../../../../../actions";
 
-const PrevData = ({date,index, activeHabitData}) => {
-  console.log("Dates:", date, index);
+const PrevData = ({record,index,indexOfHabit}) => {
+  console.log("Dates:", record, index);
     const dispatch = useDispatch();
+    const user = useSelector((state)=>state.setUserData)
+
+
+    const handlePrevDayStatus = (value) =>{
+      console.log("Data Value", value,index, "---", user.habitData[indexOfHabit]);
+      // user.habitData[indexOfHabit].prevRecord[index].status = value;
+      let updatedUser = {...user}
+      updatedUser.habitData[indexOfHabit].prevRecord[index].status = value;
+      dispatch(activeUser(updatedUser));
+    }
   return (
     <div className="prevData-container">
       <span
@@ -19,13 +29,14 @@ const PrevData = ({date,index, activeHabitData}) => {
         <FontAwesomeIcon icon={faXmark} />
       </span>
 
-      <h2>{date.formatted}</h2>
+      <h2>{record.date}</h2>
 
       <div className="selector-container">
         <label htmlFor="antd-select">Status:</label>
         <Select
           id="antd-select"
-          defaultValue="Not Done"
+          defaultValue={record.status}
+          onChange={(value)=>{handlePrevDayStatus(value)}}
           options={[
             { value: "Done", label: "Done" },
             { value: "Not Done", label: "Not Done" },

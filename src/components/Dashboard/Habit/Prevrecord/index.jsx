@@ -8,8 +8,8 @@ import { activeUser, prevBox } from "../../../../actions";
 const PrevRecord = () => {
   let user = useSelector((state) => state.setUserData);
   let dispatch = useDispatch()
-  const activeHabitData = useSelector((state)=> state.activeHabitPrevData);
-  useEffect(()=>{
+  const activeHabitData = useSelector((state) => state.activeHabitPrevData);
+  useEffect(() => {
     console.log("Habit Data Active*************:", activeHabitData);
   }, [activeHabitData])
   // Calculating Date
@@ -59,15 +59,17 @@ const PrevRecord = () => {
 
   // For deletion
 
-  const deleteHabit = () =>{
-    let updatedData = user.habitData.filter((habit)=> habit.id !== activeHabitData[0].id)
-    let updatedUser = {...user}
+  const deleteHabit = () => {
+    let updatedData = user.habitData.filter((habit) => habit.id !== activeHabitData[0].id)
+    let updatedUser = { ...user }
     updatedUser.habitData = updatedData;
     console.log("Updated USer:", updatedUser);
     dispatch(activeUser(updatedUser))
     localStorage.setItem('user', JSON.stringify(updatedUser))
     dispatch(prevBox(false))
   }
+const indexOfHabit = user.habitData.findIndex(habit => habit.id === activeHabitData[0].id);
+
   return (
     <div className="prevRecord-background">
       <div className="prevRecord-container">
@@ -76,13 +78,12 @@ const PrevRecord = () => {
         <h3>Previous Records</h3>
         <div className="previous-record-list">
           {/* Import Previous Data Icons */}
-          {previousDates.map((date, index)=>{
-
-            return( 
-            <PrevData date={date} index = {index} key={index} activeHabitData = {activeHabitData[0]}/> 
+          {user.habitData[indexOfHabit].prevRecord.map((record, index) => (
+            index > 0 && (
+              <PrevData record={record} key={index} index={index} indexOfHabit={indexOfHabit} />
             )
-            
-          })}
+          ))}
+
         </div>
 
         <button className="delete-habit-btn" onClick={deleteHabit}>Delete habit</button>

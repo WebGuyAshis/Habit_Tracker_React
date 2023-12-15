@@ -28,6 +28,7 @@ const WelcomePage = () => {
     const [user, setUser] = useState({
         name: "",
         gender: "",
+        
     });
 
     // Validating User Name

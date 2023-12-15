@@ -15,7 +15,7 @@ import { activeHabitData, activeUser, prevBox } from "../../../actions";
 const Habit = ({ habit, index }) => {
   let dispatch = useDispatch();
   let user = useSelector((state) => state.setUserData);
-  
+  console.log("USer From Habit:", user, "Habit Recieved:", habit,index);
   //   // States for Count and Status
   const [percent, setPercent] = useState(0);
   const [completedCount, setCompletedCount] = useState(habit.prevRecord[0].countCompleted);
@@ -100,7 +100,7 @@ const Habit = ({ habit, index }) => {
       updatedUser.habitData[index].prevRecord[0].countCompleted = completedCount;
 
       dispatch(activeUser(updatedUser));
-      localStorage.setItem("user", JSON.stringify(updatedUser));
+      // localStorage.setItem("user", JSON.stringify(updatedUser));
     }
   },[statusChange],[completedCount])
 
